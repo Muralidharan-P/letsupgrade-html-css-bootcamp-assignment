@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search Results</title>
+  <style>
+    /* Style the table */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>Search Results</h1>
+  <form onsubmit="search(event)">
+    <label for="search-input">Search:</label>
+    <input type="text" id="search-input" name="search-input">
+    <button type="submit">Go</button>
+  </form>
+  <table id="search-results">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <script>
+    function search(event) {
+      event.preventDefault();
+      const searchInput = document.getElementById('search-input').value;
+      const searchResults = document.getElementById('search-results').querySelector('tbody');
+      // Make your API request to get the search results based on the searchInput
+      // You can use XMLHttpRequest, fetch or any other library
+      // The response should be an array of objects with `title`, `description`, and `link` properties.
+      // For this example, I will use a static array of objects as an example.
+      const data = [
+        {title: 'Search Result 1', description: 'Lorem ipsum dolor sit amet', link: 'https://example.com/search-result-1'},
+        {title: 'Search Result 2', description: 'Consectetur adipiscing elit', link: 'https://example.com/search-result-2'},
+        {title: 'Search Result 3', description: 'Sed do eiusmod tempor incididunt', link: 'https://example.com/search-result-3'}
+      ];
+      // Clear the previous search results
+      searchResults.innerHTML = '';
+      // Create a new row for each search result and append it to the table
+      data.forEach(result => {
+        const row = document.createElement('tr');
+        const titleCell = document.createElement('td');
+        const descriptionCell = document.createElement('td');
+        const linkCell = document.createElement('td');
+        titleCell.textContent = result.title;
+        descriptionCell.textContent = result.description;
+        linkCell.innerHTML = `<a href="${result.link}">${result.link}</a>`;
+        row.appendChild(titleCell);
+        row.appendChild(descriptionCell);
+        row.appendChild(linkCell);
+        searchResults.appendChild(row);
+      });
+    }
+  </script>
+</body>
+</html>
