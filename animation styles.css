@@ -1,0 +1,14 @@
+/* Define the animation */
+@keyframes slide {
+  0% {
+    transform: translateX(0); /* Starting position */
+  }
+  100% {
+    transform: translateX(100%); /* Ending position */
+  }
+}
+
+/* Apply the animation to the element */
+.element {
+  animation: slide 5s linear infinite; /* 5 seconds duration, linear timing function, repeat forever */
+}
